@@ -10,7 +10,7 @@
     "test:mobile": "cucumber-js --tags @mobile"
   },
   "engines": {
-    "node": ">=20"
+    "node": "^22 || ^24 || >=26"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^13.3.0",

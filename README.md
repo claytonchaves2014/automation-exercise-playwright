@@ -25,13 +25,13 @@ O Cypress original foi preservado; esta pasta pode ser instalada e executada de 
 
 | Componente | Versão |
 | --- | --- |
-| Node.js | 20 ou superior (CI configurado com Node 20) |
+| Node.js | 22, 24 ou 26+ (CI configurado com Node 22) |
 | `@playwright/test` | 1.65.1 (fixada pelo lockfile) |
 | `@cucumber/cucumber` | 13.3.0 (fixada pelo lockfile) |
 
 ## Dependências e instalação
 
-Pré-requisitos: Node.js 20+ e acesso à internet para baixar o navegador e acessar os serviços de demonstração.
+Pré-requisitos: Node.js 22, 24 ou 26+ e acesso à internet para baixar o navegador e acessar os serviços de demonstração.
 
 Execute os comandos dentro de `playwright/`:
 
