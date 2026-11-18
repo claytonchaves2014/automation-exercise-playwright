@@ -1,8 +1,8 @@
 {
-  "name": "automation-exercise-playwright",
+  "name": "automacao-exercicio-playwright",
   "version": "1.0.0",
   "private": true,
-  "description": "Playwright API and Cucumber E2E automation exercise",
+  "description": "Testes automatizados de API e E2E com Playwright e Cucumber",
   "scripts": {
     "test": "cucumber-js",
     "test:api": "cucumber-js --tags @api",

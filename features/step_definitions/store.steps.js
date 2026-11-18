@@ -4,12 +4,12 @@ const { expect } = require("@playwright/test");
 const DEMO_USERNAME = "standard_user";
 const DEMO_PASSWORD = "secret_sauce";
 
-Given("que estou na página de login da loja", async function () {
+Given("que estou na página para entrar na loja", async function () {
   await this.page.goto(this.baseUrl);
 });
 
 When(
-  "faço login com usuário {string} e senha {string}",
+  "entro com usuário {string} e senha {string}",
   async function (username, password) {
     await this.loginPage.login(username, password);
   }
@@ -19,20 +19,23 @@ When("tento entrar sem preencher os campos", async function () {
   await this.loginPage.submitEmptyForm();
 });
 
-Then("a página de produtos deve estar visível", async function () {
+Then("a área de produtos deve estar visível", async function () {
   await expect(this.page.locator('[data-test="title"]')).toHaveText("Products");
 });
 
-Then("devo ver o erro de login {string}", async function (message) {
+Then("devo ver a mensagem de acesso {string}", async function (message) {
   await expect(this.loginPage.errorMessage).toContainText(message);
 });
 
-When("adiciono um produto ao carrinho e abro o checkout", async function () {
-  await this.storePage.addFirstProductToCart();
-  await this.storePage.openCart();
-  await expect(this.page.locator('[data-test="checkout"]')).toBeVisible();
-  await this.storePage.startCheckout();
-});
+When(
+  "adiciono um produto ao carrinho e inicio a finalização da compra",
+  async function () {
+    await this.storePage.addFirstProductToCart();
+    await this.storePage.openCart();
+    await expect(this.page.locator('[data-test="checkout"]')).toBeVisible();
+    await this.storePage.startCheckout();
+  }
+);
 
 Then("o formulário de entrega deve ser exibido", async function () {
   await expect(this.page.locator('[data-test="title"]')).toHaveText(
@@ -52,7 +55,7 @@ When("preencho os dados de entrega válidos", async function () {
   await this.storePage.continueToOverview();
 });
 
-When("tento continuar com o endereço incompleto", async function () {
+When("tento prosseguir com o endereço incompleto", async function () {
   await this.storePage.fillCheckoutInformation({
     firstName: "Playwright",
     lastName: "Tester",

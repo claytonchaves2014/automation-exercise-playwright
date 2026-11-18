@@ -1,4 +1,4 @@
-name: Playwright API, E2E and Mobile
+name: Testes de API, E2E e dispositivos móveis com Playwright
 
 on:
   push:
@@ -7,37 +7,44 @@ on:
 
 jobs:
   playwright:
+    name: Testes - ${{ matrix.descricao }}
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
-        suite: [ api, e2e, mobile ]
+        include:
+          - suite: api
+            descricao: API
+          - suite: e2e
+            descricao: E2E para computador
+          - suite: mobile
+            descricao: E2E para dispositivos móveis
 
     steps:
-      - name: Checkout repository
+      - name: Obter código do repositório
         uses: actions/checkout@v7
 
-      - name: Setup Node.js
+      - name: Configurar Node.js
         uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
 
-      - name: Install dependencies
+      - name: Instalar dependências
         run: npm ci
 
-      - name: Install Playwright browser
+      - name: Instalar navegador do Playwright
         if: matrix.suite != 'api'
         run: npx playwright install --with-deps chromium
 
-      - name: Run ${{ matrix.suite }} tests
+      - name: Executar testes - ${{ matrix.descricao }}
         run: npm run test:${{ matrix.suite }}
 
-      - name: Upload ${{ matrix.suite }} report
+      - name: Publicar relatório - ${{ matrix.descricao }}
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: playwright-${{ matrix.suite }}-reports
+          name: relatorios-playwright-${{ matrix.suite }}
           path: reports/
           if-no-files-found: warn

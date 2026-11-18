@@ -18,25 +18,25 @@ Funcionalidade: Testes de contrato da API de produtos
     Quando envio uma requisição POST para "/products/add" com o JSON
       """
       {
-        "title": "Playwright test product",
+        "title": "Produto de teste Playwright",
         "price": 19.99
       }
       """
     Então o status da resposta deve ser 201
     E o Content-Type da resposta deve indicar JSON
-    E o campo "title" da resposta deve ser "Playwright test product"
+    E o campo "title" da resposta deve ser "Produto de teste Playwright"
 
   Cenário: Atualizar um produto (PUT)
     Quando envio uma requisição PUT para "/products/1" com o JSON
       """
       {
-        "title": "Updated by Playwright",
+        "title": "Produto atualizado pelo Playwright",
         "price": 25.5
       }
       """
     Então o status da resposta deve ser 200
     E o Content-Type da resposta deve indicar JSON
-    E o campo "title" da resposta deve ser "Updated by Playwright"
+    E o campo "title" da resposta deve ser "Produto atualizado pelo Playwright"
 
   Cenário: Remover um produto (DELETE)
     Quando envio uma requisição DELETE para "/products/1"
