@@ -1,0 +1,43 @@
+name: Playwright API, E2E and Mobile
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  playwright:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [ api, e2e, mobile ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browser
+        if: matrix.suite != 'api'
+        run: npx playwright install --with-deps chromium
+
+      - name: Run ${{ matrix.suite }} tests
+        run: npm run test:${{ matrix.suite }}
+
+      - name: Upload ${{ matrix.suite }} report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-${{ matrix.suite }}-reports
+          path: reports/
+          if-no-files-found: warn

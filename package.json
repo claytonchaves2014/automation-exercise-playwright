@@ -1,0 +1,19 @@
+{
+  "name": "automation-exercise-playwright",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright API and Cucumber E2E automation exercise",
+  "scripts": {
+    "test": "cucumber-js",
+    "test:api": "cucumber-js --tags @api",
+    "test:e2e": "cucumber-js --tags \"@e2e and not @mobile\"",
+    "test:mobile": "cucumber-js --tags @mobile"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^13.3.0",
+    "@playwright/test": "^1.65.1"
+  }
+}
