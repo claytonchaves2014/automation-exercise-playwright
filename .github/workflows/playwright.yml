@@ -80,19 +80,7 @@ jobs:
           arch: x86_64
           profile: pixel_2
           disable-animations: true
-          script: |
-            mkdir -p reports/mobile
-            appium --address 127.0.0.1 --port 4723 --base-path / --log reports/mobile/appium-server.log &
-            APPIUM_PID=$!
-            trap 'kill "$APPIUM_PID" || true' EXIT
-            for attempt in $(seq 1 60); do
-              if curl --fail --silent http://127.0.0.1:4723/status > /dev/null; then
-                break
-              fi
-              sleep 2
-            done
-            curl --fail --silent http://127.0.0.1:4723/status > /dev/null
-            npm run test:mobile:native
+          script: bash mobile/run-ci.sh
 
       - name: Publicar relatório e evidências dos testes nativos
         if: always()
