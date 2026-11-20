@@ -72,6 +72,8 @@ jobs:
 
       - name: Executar testes nativos no emulador Android
         uses: reactivecircus/android-emulator-runner@v2.38.0
+        env:
+          ANDROID_I_WANT_MY_TCG: "yes"
         with:
           api-level: 35
           target: google_apis
