@@ -55,11 +55,10 @@ npx playwright install chromium
 
 Os testes nativos requerem também Java, Android Studio, Android SDK/Platform Tools, um emulador Android em execução e Appium com o driver UiAutomator2. O fluxo do GitHub Actions configura um emulador Android API 35 automaticamente.
 
-Baixe e valide o APK de demonstração e instale o driver Android do Appium:
+O driver UiAutomator2 é instalado junto com as dependências do projeto. Baixe e valide o APK de demonstração:
 
 ```powershell
 npm run mobile:download
-npm run mobile:install-driver
 ```
 
 Instale também o K6 no Windows:

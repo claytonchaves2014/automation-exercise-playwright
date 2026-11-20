@@ -12,7 +12,6 @@
     "perf:load": "k6 run performance/load.js",
     "perf:smoke": "k6 run -e VUS=5 -e DURATION=10s -e RAMP_DURATION=1s performance/load.js",
     "mobile:download": "node mobile/download-app.js",
-    "mobile:install-driver": "appium driver install uiautomator2",
     "mobile:server": "appium --address 127.0.0.1 --port 4723 --base-path /",
     "test:mobile:native": "mocha --reporter mochawesome --reporter-options reportDir=reports/mobile,reportFilename=relatorio-appium,html=true,json=true,overwrite=true --timeout 120000 \"mobile/specs/**/*.spec.js\""
   },

@@ -67,9 +67,6 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
-      - name: Instalar driver Android do Appium
-        run: npm run mobile:install-driver
-
       - name: Baixar e verificar aplicativo Android de demonstração
         run: npm run mobile:download
 
