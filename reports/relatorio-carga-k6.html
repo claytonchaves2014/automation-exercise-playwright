@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relatório do teste de carga</title>
+  <style>
+    body{font:16px/1.5 system-ui,sans-serif;max-width:900px;margin:2rem auto;padding:0 1rem;color:#222}
+    table{border-collapse:collapse;width:100%;margin:1rem 0 2rem}
+    th,td{border:1px solid #ccc;padding:.6rem;text-align:left}
+    th{background:#f2f2f2}
+    .status{font-size:1.3rem;font-weight:700}
+  </style>
+</head>
+<body>
+  <h1>Relatório do teste de carga</h1>
+  <p class="status">Resultado geral: Aprovado</p>
+  <p><strong>Alvo:</strong> http://127.0.0.1:8080/api/products</p>
+  <h2>Configuração da execução</h2>
+  <table><tbody><tr><th>Data da execução</th><td>2026-11-19T15:48:12.771Z</td></tr><tr><th>Alvo local</th><td>http://127.0.0.1:8080/api/products</td></tr><tr><th>Usuários virtuais</th><td>500</td></tr><tr><th>Tempo em carga máxima</th><td>5m</td></tr><tr><th>Duração da rampa</th><td>30s</td></tr><tr><th>Estratégia</th><td>subida progressiva, carga constante e descida</td></tr></tbody></table>
+  <h2>Resultados gerais</h2>
+  <table><tbody><tr><th>Total de requisições</th><td>165065</td></tr><tr><th>Requisições por segundo</th><td>457.64</td></tr><tr><th>Máximo de usuários virtuais</th><td>500</td></tr><tr><th>Percentual de falhas</th><td>0%</td></tr><tr><th>Verificações aprovadas</th><td>495195</td></tr><tr><th>Verificações reprovadas</th><td>0</td></tr><tr><th>Percentual de verificações aprovadas</th><td>100%</td></tr></tbody></table>
+  <h2>Latências</h2>
+  <table><tbody><tr><th>Média</th><td>0.55 ms</td></tr><tr><th>Mediana</th><td>0.52 ms</td></tr><tr><th>Percentil 90</th><td>1.15 ms</td></tr><tr><th>Percentil 95</th><td>1.52 ms</td></tr><tr><th>Máxima</th><td>29.39 ms</td></tr></tbody></table>
+  <h2>Limites de aprovação</h2>
+  <table><thead><tr><th>Critério</th><th>Resultado</th></tr></thead><tbody><tr><td>Latência p95 abaixo de 500 ms</td><td>Aprovado</td></tr><tr><td>Falhas abaixo de 1%</td><td>Aprovado</td></tr><tr><td>Verificações acima de 99%</td><td>Aprovado</td></tr></tbody></table>
+  <p>O alvo é um mock local. Os resultados não representam a capacidade de uma API de produção ou de infraestrutura externa.</p>
+</body>
+</html>

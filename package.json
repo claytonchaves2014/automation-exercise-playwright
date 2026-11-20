@@ -7,7 +7,10 @@
     "test": "cucumber-js",
     "test:api": "cucumber-js --tags @api",
     "test:e2e": "cucumber-js --tags \"@e2e and not @mobile\"",
-    "test:mobile": "cucumber-js --tags @mobile"
+    "test:mobile": "cucumber-js --tags @mobile",
+    "perf:mock": "node performance/mock-api.js",
+    "perf:load": "k6 run performance/load.js",
+    "perf:smoke": "k6 run -e VUS=5 -e DURATION=10s -e RAMP_DURATION=1s performance/load.js"
   },
   "engines": {
     "node": "^22 || ^24 || >=26"

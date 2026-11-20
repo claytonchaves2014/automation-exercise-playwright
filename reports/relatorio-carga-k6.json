@@ -1,0 +1,42 @@
+{
+  "titulo": "Relatório do teste de carga",
+  "alvo": "http://127.0.0.1:8080/api/products",
+  "geradoEm": "2026-11-19T15:48:12.771Z",
+  "configuracao": {
+    "usuariosVirtuais": 500,
+    "duracaoSustentada": "5m",
+    "rampa": "30s",
+    "estrategia": "subida progressiva, carga constante e descida"
+  },
+  "resultados": {
+    "requisicoes": 165065,
+    "requisicoesPorSegundo": 457.64,
+    "usuariosVirtuaisMaximos": 500,
+    "falhasPercentual": 0,
+    "verificacoesAprovadas": 495195,
+    "verificacoesReprovadas": 0,
+    "verificacoesPercentual": 100,
+    "latenciaMs": {
+      "media": 0.55,
+      "mediana": 0.52,
+      "p90": 1.15,
+      "p95": 1.52,
+      "maxima": 29.39
+    }
+  },
+  "limites": [
+    {
+      "criterio": "Latência p95 abaixo de 500 ms",
+      "aprovado": true
+    },
+    {
+      "criterio": "Falhas abaixo de 1%",
+      "aprovado": true
+    },
+    {
+      "criterio": "Verificações acima de 99%",
+      "aprovado": true
+    }
+  ],
+  "aprovado": true
+}
