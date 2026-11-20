@@ -48,3 +48,57 @@ jobs:
           name: relatorios-playwright-${{ matrix.suite }}
           path: reports/
           if-no-files-found: warn
+
+  mobile-native:
+    name: Testes nativos Android - Appium
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+
+    steps:
+      - name: Obter código do repositório
+        uses: actions/checkout@v7
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Instalar driver Android do Appium
+        run: npm run mobile:install-driver
+
+      - name: Baixar e verificar aplicativo Android de demonstração
+        run: npm run mobile:download
+
+      - name: Executar testes nativos no emulador Android
+        uses: reactivecircus/android-emulator-runner@v2.38.0
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          script: |
+            mkdir -p reports/mobile
+            appium --address 127.0.0.1 --port 4723 --base-path / --log reports/mobile/appium-server.log &
+            APPIUM_PID=$!
+            trap 'kill "$APPIUM_PID" || true' EXIT
+            for attempt in $(seq 1 60); do
+              if curl --fail --silent http://127.0.0.1:4723/status > /dev/null; then
+                break
+              fi
+              sleep 2
+            done
+            curl --fail --silent http://127.0.0.1:4723/status > /dev/null
+            npm run test:mobile:native
+
+      - name: Publicar relatório e evidências dos testes nativos
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: relatorios-appium-android
+          path: reports/mobile/
+          if-no-files-found: warn
